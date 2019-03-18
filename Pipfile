@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+python-dotenv = "*"
+pandas = "*"
+pandas-gbq = "*"
+gcsfs = "*"
+dataset = "*"
+retrying = "*"
+loguru = "*"
+tqdm = "*"
+google-searchconsole = {git = "https://github.com/joshcarty/google-searchconsole"}
+google-api-python-client = "*"
+google-cloud-bigquery = "*"
+google-cloud-storage = "*"
+pydata-google-auth = "*"
+oauth2client = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = false

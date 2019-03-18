@@ -1,0 +1,6 @@
+LOGURU_FORMAT="<green>{time:YYYY-MM-DD HH:mm:ss}</green>: <level>{message}</level>"
+SQLITE_PATH=C:\Users\UserName\Temp
+ROOT_DB=gsc_sa_downloader.db
+CLIENT_ID=[Client ID des Google API Projekts]
+CLIENT_SECRET=[Clientschlüssel des Google API Projekts]
+MONTHS=16
