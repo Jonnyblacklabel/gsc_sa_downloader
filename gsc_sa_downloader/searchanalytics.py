@@ -210,7 +210,8 @@ class QueryThreaded:
         self.look_back = tasks_done_last_60_seconds # window for mean rps calc (default 10)
         # dampen last 60 hits because every worker does pagination.
         # one does not know for shure if all hits were in 60 seconds window.
-        hits_last_60_seconds = ceil(np.sum(self.hits[-self.look_back:]) / 2**(np.log10(len(self.worker_threads))/10))
+        # hits_last_60_seconds = ceil(np.sum(self.hits[-self.look_back:]) / 2**(np.log10(len(self.worker_threads))/10))
+        hits_last_60_seconds = np.sum(self.hits[-self.look_back:])
 
         # adding workers
         if 0 < (hits_last_60_seconds + (hits_last_60_seconds / len(self.worker_threads))) <= 60 * self.target_rps:
@@ -251,7 +252,7 @@ class QueryThreaded:
         report = self.run_query(query) # run query
         dict_rows = report.to_dict()
         len_rows = len(report)
-        hits = max(2, ceil((len_rows / 5000)+1))
+        hits = max(2, ceil((len_rows / 25000)+1))
         elapsed = time.time() - start
         rps = hits / elapsed
         self.elapsed.append(elapsed) # add to object elapsed

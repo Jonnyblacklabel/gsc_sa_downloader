@@ -32,7 +32,7 @@ def combine_list_values(values: List[str]):
   result = []
   for i in range(len(values)):
     result.extend(list(itertools.combinations(values, i+1)))
-  return result
+  return list(filter(None, result))
 
 
 def dimension_combinations(defaults: List[str],
@@ -49,11 +49,12 @@ def dimension_combinations(defaults: List[str],
   """
   dimensions = [defaults]
   combinations = combine_list_values(additionals)
-  dimensions.extend([tuple(sorted(defaults + combination)) for combination in combinations])
-  return dimensions
+  if len(combinations) > 0:
+    dimensions.extend([tuple(sorted(defaults + combination)) for combination in combinations])
+  return list(filter(None, dimensions))
 
 def get_tuple(values, sep=','):
-  return tuple(sorted(values.split(sep), key=str.lower))
+  return tuple(sorted(filter(None, values.split(sep)), key=str.lower))
 
 def load(filename: str, section: str = None, path: str = 'configurations'):
   """return config parser
